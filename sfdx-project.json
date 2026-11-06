@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "SFDEMO",
+  "namespace": "",
+  "sfdxLoginUrl": "https://login.salesforce.com",
+  "apiVersion": "60.0"
+}

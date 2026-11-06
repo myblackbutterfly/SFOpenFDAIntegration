@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Date__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>Date of the adverse event (when it was considered to have started).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Date of the adverse event (when it was considered to have started).</inlineHelpText>
+    <label>Event Date</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

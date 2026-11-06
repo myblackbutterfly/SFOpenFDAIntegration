@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Type__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>The type of report.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The type of report.</inlineHelpText>
+    <label>Report Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N/A</fullName>
+                <default>true</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Expedited (15-Day)</fullName>
+                <default>false</default>
+                <label>Expedited (15-Day)</label>
+            </value>
+            <value>
+                <fullName>Direct</fullName>
+                <default>false</default>
+                <label>Direct</label>
+            </value>
+            <value>
+                <fullName>Pre-MoCRA</fullName>
+                <default>false</default>
+                <label>Pre-MoCRA</label>
+            </value>
+            <value>
+                <fullName>Non-Expedited (Periodic)</fullName>
+                <default>false</default>
+                <label>Non-Expedited (Periodic)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

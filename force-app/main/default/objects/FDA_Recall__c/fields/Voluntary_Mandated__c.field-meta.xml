@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voluntary_Mandated__c</fullName>
+    <externalId>false</externalId>
+    <label>Voluntary Mandated</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FDA Mandated</fullName>
+                <default>false</default>
+                <label>FDA Mandated</label>
+            </value>
+            <value>
+                <fullName>Voluntary: Firm initiated</fullName>
+                <default>false</default>
+                <label>Voluntary: Firm initiated</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

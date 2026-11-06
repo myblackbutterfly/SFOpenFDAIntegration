@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Patient_Age_Unit__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>Encodes the unit in which the age of the consumer is expressed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Encodes the unit in which the age of the consumer is expressed.</inlineHelpText>
+    <label>Patient Age Unit</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N/A</fullName>
+                <default>true</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Year(s)</fullName>
+                <default>false</default>
+                <label>Year(s)</label>
+            </value>
+            <value>
+                <fullName>Month(s)</fullName>
+                <default>false</default>
+                <label>Month(s)</label>
+            </value>
+            <value>
+                <fullName>Week(s)</fullName>
+                <default>false</default>
+                <label>Week(s)</label>
+            </value>
+            <value>
+                <fullName>Day(s)</fullName>
+                <default>false</default>
+                <label>Day(s)</label>
+            </value>
+            <value>
+                <fullName>Decade(s)</fullName>
+                <default>false</default>
+                <label>Decade(s)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

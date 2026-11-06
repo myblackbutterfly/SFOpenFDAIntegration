@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Patient_Age_Group__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>Categorized age range of the consumer.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Categorized age range of the consumer.</inlineHelpText>
+    <label>Patient Age Group</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N/A</fullName>
+                <default>true</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Child</fullName>
+                <default>false</default>
+                <label>Child</label>
+            </value>
+            <value>
+                <fullName>Adult</fullName>
+                <default>false</default>
+                <label>Adult</label>
+            </value>
+            <value>
+                <fullName>Elderly</fullName>
+                <default>false</default>
+                <label>Elderly</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

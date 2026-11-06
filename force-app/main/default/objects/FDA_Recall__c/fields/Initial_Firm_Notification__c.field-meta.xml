@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initial_Firm_Notification__c</fullName>
+    <externalId>false</externalId>
+    <label>Initial Firm Notification</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>E-Mail</fullName>
+                <default>false</default>
+                <label>E-Mail</label>
+            </value>
+            <value>
+                <fullName>Letter</fullName>
+                <default>false</default>
+                <label>Letter</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Press Release</fullName>
+                <default>false</default>
+                <label>Press Release</label>
+            </value>
+            <value>
+                <fullName>Telephone</fullName>
+                <default>false</default>
+                <label>Telephone</label>
+            </value>
+            <value>
+                <fullName>Two or more of the following: Email, Fax, Letter, Press Release, Telephone, Visit</fullName>
+                <default>false</default>
+                <label>Two or more of the following: Email, Fax, Letter, Press Release, Telephone, Visit</label>
+            </value>
+            <value>
+                <fullName>Visit</fullName>
+                <default>false</default>
+                <label>Visit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Latest_Received_Date__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>Date the latest report was received by the FDA.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Date the latest report was received by the FDA.</inlineHelpText>
+    <label>Latest Received Date</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

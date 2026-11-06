@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Recalls</fullName>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>Recall_Number__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>Initiation_Date__c</columns>
+    <columns>Classification__c</columns>
+    <columns>Region__c</columns>
+    <columns>Product_Description__c</columns>
+    <columns>Reason_for_Recall__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>All Recalls</label>
+</ListView>

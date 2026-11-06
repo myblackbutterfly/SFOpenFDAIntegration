@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reactions__c</fullName>
+    <defaultValue>&quot;N/A&quot;</defaultValue>
+    <description>MedDRA terms for the reactions.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>MedDRA terms for the reactions.</inlineHelpText>
+    <label>Reactions</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

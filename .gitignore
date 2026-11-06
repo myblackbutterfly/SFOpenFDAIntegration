@@ -1,0 +1,18 @@
+# Salesforce local and temporary files
+/.sfdx/
+/.sf/
+.localdevserver
+.localdevserver-*
+
+# OS and IDE specific files
+.DS_Store
+.Thumbs.db
+.vscode/
+*.log
+
+# Node dependencies (if using npm packages/lwc local dev)
+node_modules/
+
+# Test and coverage reports
+.reports/
+coverage/
