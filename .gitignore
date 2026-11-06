@@ -15,4 +15,4 @@ node_modules/
 
 # Test and coverage reports
 .reports/
-coverage/
+coverage/assets/resources/cosmetic-events.json
