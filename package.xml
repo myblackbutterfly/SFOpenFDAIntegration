@@ -21,5 +21,21 @@
         <members>openFDA_Admin</members>
         <name>PermissionSet</name>
     </types>
+    <types>
+        <members>Cosmetic_Reports/Incidents_By_Age_Report1</members>
+        <members>Cosmetic_Reports/FDA_Incidents_Trend_By_Age_Report</members>
+        <members>Recall_Reports/Recalls_By_Type_Report</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>FDACosmeticsIncidents/Cosmetics_Incident_Dashboard</members>
+        <members>FDARecalls/Recall_Metrics_Dashboard</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
+        <members>FDA_Cosmetics_Incidents</members>
+        <members>FDA_Recall_Records</members>
+        <name>ReportType</name>
+    </types>
     <version>60.0</version>
 </Package>

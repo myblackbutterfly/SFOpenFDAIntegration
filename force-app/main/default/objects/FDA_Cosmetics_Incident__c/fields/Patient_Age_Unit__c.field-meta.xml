@@ -3,7 +3,6 @@
     <fullName>Patient_Age_Unit__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>Encodes the unit in which the age of the consumer is expressed.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Encodes the unit in which the age of the consumer is expressed.</inlineHelpText>
     <label>Patient Age Unit</label>
     <required>false</required>

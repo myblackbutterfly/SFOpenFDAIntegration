@@ -3,7 +3,6 @@
     <fullName>Product_Name__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>The reported name of the product.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The reported name of the product.</inlineHelpText>
     <label>Product Name</label>
     <length>32768</length>

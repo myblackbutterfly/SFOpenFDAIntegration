@@ -3,7 +3,6 @@
     <fullName>Report_Type__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>The type of report.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The type of report.</inlineHelpText>
     <label>Report Type</label>
     <required>false</required>

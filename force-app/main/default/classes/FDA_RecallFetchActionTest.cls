@@ -1,7 +1,7 @@
 @isTest
 private class FDA_RecallFetchActionTest {
 
-    // Mock Http Class for OpenFDA API
+    // Mock Http Callout Class for OpenFDA API
     private class OpenFDAMockGenerator implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
             HttpResponse res = new HttpResponse();
@@ -39,18 +39,18 @@ private class FDA_RecallFetchActionTest {
     }
 
     @isTest
-    static void testGetRecallsSuccess() {
+    static void testFetchRecallsSuccess() {
         // Set mock callout class
         Test.setMock(HttpCalloutMock.class, new OpenFDAMockGenerator());
 
         // Prepare request parameters matching the current Request inner class
-        FDA_RecallFetchAction.Request request = new FDA_RecallFetchAction.Request();
-        request.recordLimit = 10;
+        FDA_RecallFetchAction.Request req = new FDA_RecallFetchAction.Request();
+        req.recordLimit = 10;
 
-        List<FDA_RecallFetchAction.Request> requests = new List<FDA_RecallFetchAction.Request>{ request };
+        List<FDA_RecallFetchAction.Request> requests = new List<FDA_RecallFetchAction.Request>{ req };
 
         Test.startTest();
-        List<FDA_RecallFetchAction.Response> responses = FDA_RecallFetchAction.getRecalls(requests);
+        List<FDA_RecallFetchAction.Response> responses = FDA_RecallFetchAction.fetchRecalls(requests);
         Test.stopTest();
 
         // Assertions

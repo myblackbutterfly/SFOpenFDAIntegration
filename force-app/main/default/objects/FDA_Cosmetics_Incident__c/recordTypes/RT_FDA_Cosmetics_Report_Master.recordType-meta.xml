@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RT_FDA_Cosmetics_Report_Master</fullName>
     <active>true</active>
-    <label>RT_FDA_Cosmetics_Report Master</label>
+    <label>FDA Cosmetics Incident Master</label>
     <picklistValues>
         <picklist>Patient_Age_Group__c</picklist>
         <values>

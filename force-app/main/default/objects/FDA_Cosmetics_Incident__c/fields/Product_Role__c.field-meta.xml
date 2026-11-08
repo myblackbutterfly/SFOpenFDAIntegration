@@ -3,7 +3,6 @@
     <fullName>Product_Role__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>The reported role of the product in the adverse event report.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The reported role of the product in the adverse event report.</inlineHelpText>
     <label>Product Role</label>
     <length>32768</length>

@@ -3,7 +3,6 @@
     <fullName>Outcomes__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>The outcome or consequence of the adverse event.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The outcome or consequence of the adverse event.</inlineHelpText>
     <label>Outcomes</label>
     <length>32768</length>

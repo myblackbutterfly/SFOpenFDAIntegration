@@ -3,7 +3,6 @@
     <fullName>Patient_Age_Group__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>Categorized age range of the consumer.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Categorized age range of the consumer.</inlineHelpText>
     <label>Patient Age Group</label>
     <required>false</required>

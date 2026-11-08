@@ -1,10 +1,9 @@
 public with sharing class FDA_RecallFetchAction {
 
-    public static final Integer DEFAULT_MAX_RECORDS = 50;
     public static final String NOT_APPLICABLE = 'N/A';
 
     public class Request {
-        @InvocableVariable(label='Record Limit per Endpoint' description='Max records to get per category (default 50)' required=false)
+        @InvocableVariable(label='Record Limit per Endpoint' description='Max records to fetch per category (default 50)' required=false)
         public Integer recordLimit;
     }
 
@@ -22,7 +21,7 @@ public with sharing class FDA_RecallFetchAction {
     @InvocableMethod(label='Get openFDA microservice results (Synchronous)' 
         description='food, drug, and device recalls synchronously and inserts/updates them' 
         category='FDA Compliance')
-    public static List<Response> getRecalls(List<Request> requests) {
+    public static List<Response> fetchRecalls(List<Request> requests) {
         System.debug(LoggingLevel.INFO, '==================================================');
         System.debug(LoggingLevel.INFO, '>>> FDA_RecallFetchAction do stuff -- Begin');
         System.debug(LoggingLevel.INFO, '==================================================');
@@ -30,18 +29,18 @@ public with sharing class FDA_RecallFetchAction {
         List<Response> responses = new List<Response>();
         Response res = new Response();
         
-        Integer effectiveLimit = DEFAULT_MAX_RECORDS;
+        Integer maxRecordCount = 50;
         if (!requests.isEmpty() && requests[0] != null) {
             if (requests[0].recordLimit != null && requests[0].recordLimit > 0) {
-                effectiveLimit = requests[0].recordLimit;
+                maxRecordCount = requests[0].recordLimit;
             }
         }
 
-        // Define endpoints dynamically using the local effective limit
+        // Define endpoints for food, drugs, and devices
         List<String> endpoints = new List<String>{
-            'https://api.fda.gov/food/enforcement.json?limit=' + effectiveLimit,
-            'https://api.fda.gov/drug/enforcement.json?limit=' + effectiveLimit,
-            'https://api.fda.gov/device/enforcement.json?limit=' + effectiveLimit
+            'https://api.fda.gov/food/enforcement.json?limit=' + maxRecordCount,
+            'https://api.fda.gov/drug/enforcement.json?limit=' + maxRecordCount,
+            'https://api.fda.gov/device/enforcement.json?limit=' + maxRecordCount
         };
 
         List<FDA_Recall__c> restInvocations = new List<FDA_Recall__c>();
@@ -59,7 +58,8 @@ public with sharing class FDA_RecallFetchAction {
                 request.setTimeout(120000);
 
                 HttpResponse httpRes = http.send(request);
-                System.debug(LoggingLevel.INFO, 'Response Status: [' + httpRes.getStatusCode() + '] for REST endpoint: ' + endpoint);
+                System.debug(LoggingLevel.INFO, 'Response Status: [' + httpRes.getStatusCode() + '] for REST endpoint: []' +
+                 endpoint);
 
                 if (httpRes.getStatusCode() == 200) {
                     Map<String, Object> root = (Map<String, Object>) JSON.deserializeUntyped(httpRes.getBody());
@@ -87,7 +87,6 @@ public with sharing class FDA_RecallFetchAction {
                             rec.Status__c = FDA_RecallFetchAction.getStringOrDefault(item, 'status', NOT_APPLICABLE);
                             rec.Distribution_Pattern__c = FDA_RecallFetchAction.getStringOrDefault(item, 'distribution_pattern', NOT_APPLICABLE);
                             rec.Product_Quantity__c = FDA_RecallFetchAction.getStringOrDefault(item, 'product_quantity', NOT_APPLICABLE);
-                            rec.Code_Info__c = FDA_RecallFetchAction.getStringOrDefault(item, 'code_info', NOT_APPLICABLE);
                             rec.Product_Type__c = FDA_RecallFetchAction.getStringOrDefault(item, 'product_type', NOT_APPLICABLE);
                             rec.Voluntary_Mandated__c = FDA_RecallFetchAction.getStringOrDefault(item, 'voluntary_mandated', NOT_APPLICABLE);
                             rec.Initial_Firm_Notification__c = FDA_RecallFetchAction.getStringOrDefault(item, 'initial_firm_notification', NOT_APPLICABLE);
@@ -102,7 +101,11 @@ public with sharing class FDA_RecallFetchAction {
                             rec.Initiation_Date__c = FDA_RecallFetchAction.parseFDADate(FDA_RecallFetchAction.getStringOrDefault(item, 'recall_initiation_date', null));
                             rec.Center_Classification_Date__c = FDA_RecallFetchAction.parseFDADate(FDA_RecallFetchAction.getStringOrDefault(item, 'center_classification_date', null));
                             rec.Termination_Date__c = FDA_RecallFetchAction.parseFDADate(FDA_RecallFetchAction.getStringOrDefault(item, 'termination_date', null));
-
+							String codeInfo = getStringOrDefault(item, 'code_info', NOT_APPLICABLE);
+							if (codeInfo != null && codeInfo.length() > 1000) {
+								codeInfo = codeInfo.substring(0, 997) + '...';
+							}
+							rec.Code_Info__c = codeInfo;
                             restInvocations.add(rec);
                         }
                     }
@@ -119,17 +122,22 @@ public with sharing class FDA_RecallFetchAction {
                 Database.UpsertResult[] saveResults = Database.upsert(restInvocations, externalIdField, false);
                 
                 Integer successCount = 0;
-                for (Database.UpsertResult sr : saveResults) {
-                    if (sr.isSuccess()) successCount++;
+                for (Integer i = 0; i < saveResults.size(); i++) {
+                    Database.UpsertResult sr = saveResults[i];
+                    if (sr.isSuccess()) {
+                        successCount++;
+                    } else {
+                        // This will print the exact database rejection reason for every failed row
+                        for (Database.Error err : sr.getErrors()) {
+                            System.debug(LoggingLevel.ERROR, 'DML Error on Recall ' + restInvocations[i].Recall_Number__c + ': ' 
+							+ err.getStatusCode() + ' - ' + err.getMessage() + ' on fields: ' + err.getFields());
+                        }
+                    }
                 }
 
                 res.isSuccess = true;
                 res.recordsProcessed = successCount;
                 res.message = 'Successfully synced ' + successCount + ' total records across food, drugs, and devices.';
-            } else {
-                res.isSuccess = true;
-                res.recordsProcessed = 0;
-                res.message = 'All API calls completed, but no valid records were found to upsert.';
             }
 
         } catch (Exception e) {

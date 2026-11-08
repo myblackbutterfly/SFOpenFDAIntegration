@@ -1,12 +1,12 @@
 @isTest
 global class FDA_RecallHttpCalloutMock implements HttpCalloutMock {
     global HTTPResponse respond(HTTPRequest req) {
-        HttpResponse response = new HttpResponse();
-        response.setHeader('Content-Type', 'application/json');
-        response.setStatusCode(200);
+        HttpResponse res = new HttpResponse();
+        res.setHeader('Content-Type', 'application/json');
+        res.setStatusCode(200);
         
         // Provide a simulated openFDA JSON response matching your object schema
-        response.setBody('{' +
+        res.setBody('{' +
             '"results": [' +
                 '{' +
                     '"recall_number": "Z-1234-2026",' +
@@ -18,6 +18,6 @@ global class FDA_RecallHttpCalloutMock implements HttpCalloutMock {
             ']' +
         '}');
         
-        return response;
+        return res;
     }
 }

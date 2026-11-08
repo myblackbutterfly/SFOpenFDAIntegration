@@ -3,7 +3,6 @@
     <fullName>Reactions__c</fullName>
     <defaultValue>&quot;N/A&quot;</defaultValue>
     <description>MedDRA terms for the reactions.</description>
-    <externalId>false</externalId>
     <inlineHelpText>MedDRA terms for the reactions.</inlineHelpText>
     <label>Reactions</label>
     <length>32768</length>
