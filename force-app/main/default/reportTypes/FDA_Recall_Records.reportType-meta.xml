@@ -166,6 +166,11 @@
             <field>Last_Inspected_Date__c</field>
             <table>FDA_Recall__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Alert_Checked__c</field>
+            <table>FDA_Recall__c</table>
+        </columns>
         <masterLabel>FDA Recalls</masterLabel>
     </sections>
 </ReportType>

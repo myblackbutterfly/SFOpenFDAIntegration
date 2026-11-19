@@ -1,24 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>Query for new actionable records and send an alert if found, then flag as &apos;already sent&apos;</description>
+        <name>Alert_on_Actionable_Records</name>
+        <label>Alert on Actionable Records</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <actionName>FDA_RecallAlertAction</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Has_Actionable_Records</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Send_Email_Action_1</targetReference>
+        </faultConnector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>targetFirm</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>Henry Schein Inc.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetKeyword</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>PSN388V</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FDA_RecallAlertAction</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Invoke_FDA_Recall_Fetch</name>
         <label>Invoke FDA Recall Fetch</label>
-        <locationX>176</locationX>
-        <locationY>252</locationY>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
         <actionName>FDA_RecallFetchAction</actionName>
         <actionType>apex</actionType>
+        <connector>
+            <targetReference>Alert_on_Actionable_Records</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Send_Email_Action_1</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recordLimit</name>
             <value>
-                <numberValue>50.0</numberValue>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <numberValue>300.0</numberValue>
             </value>
         </inputParameters>
         <nameSegment>FDA_RecallFetchAction</nameSegment>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Sends an email for records that match the actionable filters.</description>
+        <name>Send_Actionable_Item_Notification</name>
+        <label>Send Actionable Item Notification</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>END_ELEMENT_13</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <stringValue>douglasmarnold@gmail.com</stringValue>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>DefaultWorkflowUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>Actionable Device Recall Report</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>The FDA has published the following actionable report:
+ {!Alert_on_Actionable_Records.notification}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>3.0.1</versionString>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_Action_1</name>
+        <label>Send Error Email</label>
+        <locationX>578</locationX>
+        <locationY>350</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>END_ELEMENT_12</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <stringValue>douglasmarnold@gmail.com</stringValue>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>CurrentUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>FDA API Integration error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>{!varCustomErrorMessage}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>3.0.1</versionString>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Checks body content for actionable context</description>
+        <name>Has_Actionable_Records</name>
+        <label>Has Actionable Records</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>END_ELEMENT_14</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Nothing to do here</defaultConnectorLabel>
+        <rules>
+            <name>Notify</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Alert_on_Actionable_Records.notification</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Actionable_Item_Notification</targetReference>
+            </connector>
+            <label>Notify</label>
+        </rules>
+    </decisions>
+    <description>Modified the flow input to take 300 records.</description>
+    <ends>
+        <name>END_ELEMENT_12</name>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_13</name>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_14</name>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+    </ends>
     <environments>Default</environments>
     <interviewLabel>Manual FDA Recall Sync {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Manual FDA Recall Sync</label>
@@ -31,16 +222,45 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Invoke_FDA_Recall_Fetch</targetReference>
         </connector>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailBodyTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Error retrieving data from the Open FDA API: {!$Flow.FaultMessage}&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <description>Details of FDA records published and meeting assigned criteria.</description>
+        <name>actionableNotificationDetails</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Actionable Records</description>
+        <name>ActionableRecords</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>FDA_Recall__c</objectType>
+    </variables>
+    <variables>
+        <name>varCustomErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
 </Flow>

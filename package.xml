@@ -3,6 +3,7 @@
     <types>
         <members>FDA_Recall__c</members>
         <members>FDA_Cosmetics_Incident__c</members>
+        <members>FDA_Adverse_Event_Count__c</members>
         <name>CustomObject</name>
     </types>
     <types>

@@ -1,0 +1,1 @@
+delete [SELECT Id FROM FDA_Cosmetics_Incident__c ORDER BY CreatedDate ASC LIMIT 5000];

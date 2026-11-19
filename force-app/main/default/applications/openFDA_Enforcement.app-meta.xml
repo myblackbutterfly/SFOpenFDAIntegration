@@ -27,5 +27,6 @@
     <setupExperience>all</setupExperience>
     <tabs>FDA_Recall__c</tabs>
     <tabs>FDA_Cosmetics_Incident__c</tabs>
+    <tabs>FDA_Cosmetics_Event_Count__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>
