@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>FDA_RecallAlertAction</members>
+        <members>FDA_RecallAlertActionTest</members>
+        <members>FDA_RecallFetchAction</members>
+        <members>FDA_RecallFetchActionTest</members>
+        <members>FDA_RecallHttpCalloutMock</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>openFDA_Enforcement</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>FDA_Adverse_Event_Count__c</members>
+        <members>FDA_Cosmetics_Event_Count__c</members>
+        <members>FDA_Cosmetics_Incident__c</members>
+        <members>FDA_Recall__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>FDA_Adverse_Event_Count__c</members>
+        <members>FDA_Cosmetics_Event_Count__c</members>
+        <members>FDA_Cosmetics_Incident__c</members>
+        <members>FDA_Recall__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>FDA_Cosmetics_Incident_Record_Page</members>
+        <members>FDA_Recall_Default_Record_Page</members>
+        <members>FDA_Recalls</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Scheduled_FDA_Recall_Sync</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>FDA_Adverse_Event_Count__c-FDA Adverse Event Count Layout</members>
+        <members>FDA_Cosmetics_Event_Count__c-FDA Cosmetics Event Summary Layout</members>
+        <members>FDA_Cosmetics_Incident__c-FDA Cometics Report Layout</members>
+        <members>FDA_Recall__c-FDA Device Recall Layout</members>
+        <members>FDA_Recall__c-FDA Drug Recall Layout</members>
+        <members>FDA_Recall__c-FDA Food Recall Layout</members>
+        <members>FDA_Recall__c-FDA Recall Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Recall_Reports/FDA_Recalls_By_Type</members>
+        <members>Recall_Reports/FDA_Adverse_Events_Trend_By_Type_kze</members>
+        <members>Recall_Reports/FDA_Recalls_By_Country</members>
+        <members>Recall_Reports/FDA_Food_Recalls_By_Date</members>
+        <members>Recall_Reports/FDA_Cosmetics_Events_by_AGEDate_Report_sEH</members>
+        <members>Recall_Reports/FDA_Cosmetics_Event_By_Age_Trend_Ggn</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>openFDA_Admin</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>OPEN_FDA_API</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>FDA_Adverse_Event_Count_By_Date_Type</members>
+        <members>FDA_Cosmetics_Events_by_Date</members>
+        <members>FDA_Cosmetics_Incidents</members>
+        <members>FDA_Recall_Records</members>
+        <name>ReportType</name>
+    </types>
+    <version>68.0</version>
+</Package>
